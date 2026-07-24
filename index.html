@@ -1,14 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Webpage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kumon Tuition</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="topbar">
+    <div class="brand-mark">K</div>
+    <div><p class="eyebrow">KUMON CENTER OF SOUTH CUMMING</p><h1>Tuition planner</h1></div>
+    <div class="top-actions"><button class="button ghost" id="resetAll">Reset all</button><button class="button ghost" id="calculateAll">Calculate all</button><button class="button primary" id="printBtn">Print receipt</button></div>
+  </header>
 
-    <h1>Welcome to My Website</h1>
-    <p>This is a simple sample index.html file.</p>
+  <main class="page-shell">
+    <section class="intro"><div><p class="eyebrow">MONTHLY BILLING WORKSPACE</p><h2>Build a clear tuition summary.</h2><p class="muted">Configure up to four students, then calculate a ready-to-print statement.</p></div><div class="save-status" id="saveStatus">Saved locally</div></section>
 
+    <section class="summary-grid">
+      <article class="summary-card accent"><span>Combined total</span><strong id="grandTotal">$0.00</strong><small>All configured students</small></article>
+      <article class="summary-card"><span>Students configured</span><strong id="activeCount">0 / 4</strong><small>Use tabs to switch student</small></article>
+      <article class="summary-card"><span>Base tuition</span><strong>$190.00</strong><small>Per subject / month</small></article>
+    </section>
+
+    <section class="workspace">
+      <nav class="student-tabs" id="studentTabs" aria-label="Students"></nav>
+      <div class="workspace-grid">
+        <form class="form-panel" id="studentForm">
+          <div class="panel-heading"><div><p class="eyebrow">STUDENT <span id="studentNumber">1</span></p><h3 id="studentTitle">Student 1</h3></div><div class="panel-actions"><button class="button ghost small" id="resetStudent" type="button">Reset student</button><span class="status-pill" id="studentStatus">Not calculated</span></div></div>
+          <label class="field full"><span>Student name</span><input id="studentName" type="text" placeholder="e.g. Maya Johnson" /></label>
+          <div class="section-label">Subjects</div>
+          <div class="choice-grid two"><label class="choice"><input id="math" type="checkbox" /><span><b>Math</b><small>One subject</small></span></label><label class="choice"><input id="reading" type="checkbox" /><span><b>Reading</b><small>One subject</small></span></label></div>
+          <div class="section-label">Enrollment fees</div>
+          <label class="choice inline"><input id="enrollment" type="checkbox" /><span><b>New enrollment</b><small>Enable registration and material fees</small></span></label>
+          <div class="choice-grid two nested"><label class="choice"><input id="registration" type="checkbox" disabled /><span><b>Registration fee</b><small>$80.00</small></span></label><label class="choice"><input id="material" type="checkbox" disabled /><span><b>Material fee</b><small>$30.00</small></span></label></div>
+          <div class="section-label" id="depositTitle">Deposit</div>
+          <label class="choice inline" id="depositOption"><input id="deposit" type="checkbox" /><span><b>Deposit fee</b><small>Collect first month</small></span></label>
+          <div class="section-label">Payment & discounts</div>
+          <div class="segmented"><label><input type="radio" name="payment" value="check" checked /><span>Check</span></label><label><input type="radio" name="payment" value="card" /><span>Credit card</span></label><label><input type="radio" name="payment" value="three" /><span>Three-month program</span></label></div>
+          <div class="three-month-method" id="threeMonthMethod" hidden><span>Payment method for three-month program</span><div class="segmented"><label><input type="radio" name="threePayment" value="check" checked /><span>Check</span></label><label><input type="radio" name="threePayment" value="card" /><span>Credit card</span></label></div></div>
+          <div class="choice-grid two" id="eftOption"><label class="choice"><input id="eft" type="checkbox" /><span><b>EFT tuition</b><small>Save $20 / subject</small></span></label></div>
+          <div class="section-label">Start date & schedule</div>
+          <div class="date-grid"><label class="field"><span>Starting date</span><input id="startDate" type="date" /></label><label class="field"><span>Months to pay</span><select id="months"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label></div>
+          <p class="attendance" id="attendance">Days remaining in month: —</p>
+          <button class="button primary calculate" type="submit">Calculate student total <span>→</span></button>
+        </form>
+
+        <aside class="receipt-panel"><div class="panel-heading"><div><p class="eyebrow">LIVE STATEMENT</p><h3 id="receiptTitle">Student 1</h3></div><span class="receipt-date" id="receiptDate"></span></div><div id="lineItems" class="line-items"><div class="empty-state"><span>◎</span><p>Choose subjects and calculate<br />to build a statement.</p></div></div><div class="receipt-total"><span>Student total</span><strong id="studentTotal">$0.00</strong></div><div class="notes"><b>Payment notes</b><p>Tuition and applicable fees are due before the first day of class. Tuition is non-refundable and non-transferable.</p></div></aside>
+      </div>
+    </section>
+
+    <section class="pricing-panel"><div><p class="eyebrow">PRICING TABLE</p><h3>Subject tuition rates</h3><p class="muted">The original desktop app uses a $5 reduction beginning with the fourth subject. Edit rates here when pricing changes.</p></div><div class="rate-scroll"><div class="rate-grid" id="rateGrid"></div></div></section>
+    <footer>1595 Peachtree Parkway, Suite #108 · Cumming, GA 30041 · (770) 844-8408</footer>
+  </main>
+  <section id="printReceipt" aria-hidden="true"></section>
+  <script src="app.js"></script>
 </body>
 </html>
