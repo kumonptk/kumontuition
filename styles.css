@@ -148,3 +148,12 @@
     z-index:21!important
   }
 }
+
+/* iOS print engines round a full-height Letter frame onto a second page. */
+@media print{
+  html.ios-device #printReceipt{
+    height:9.85in!important;
+    min-height:9.85in!important;
+    max-height:9.85in!important
+  }
+}

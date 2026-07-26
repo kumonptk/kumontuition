@@ -1,4 +1,5 @@
 const STORAGE_KEY='kumon-tuition-web-v1';
+document.documentElement.classList.toggle('ios-device',/iPad|iPhone|iPod/.test(navigator.userAgent));
 const defaults=()=>({name:'',math:false,reading:false,enrollment:false,registration:true,material:false,payment:'check',threePayment:'check',eft:false,deposit:false,startDate:new Date().toISOString().slice(0,10),months:1,result:null});
 let state=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')||{active:0,students:[0,1,2,3].map(defaults),rates:[170,170,170,165,165,165,165,165]};
 state.students=[0,1,2,3].map(i=>({...defaults(),threePayment:'check',...(state.students?.[i]||{})})); state.rates=state.rates||[170,170,170,165,165,165,165,165];
